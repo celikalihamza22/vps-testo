@@ -1,0 +1,23 @@
+name: Bedava Windows 11
+on: [workflow_dispatch]
+
+jobs:
+  rdp:
+    runs-on: windows-latest
+    steps:
+      - name: RDP Aç + Sonsuz Bekle
+        run: |
+          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0
+          Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+          net user administrator HamzaKral1488! /add
+          net localgroup administrators administrator /add
+          
+          Write-Output "============================================="
+          Write-Output "RDP HAZIR AMK KNK"
+          Write-Output "Kullanıcı: administrator"
+          Write-Output "Şifre: HamzaKral1488!"
+          Write-Output "Proxy adres: tr-1.mangoohost.com.tr:25854"
+          Write-Output "============================================="
+          
+          shutdown /r /t 35400
+          while($true) { Start-Sleep -Seconds 3600 }
